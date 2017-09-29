@@ -4,3 +4,4 @@
 ### [png1](https://i.loli.net/2017/09/22/59c50a61ae8da.png)
 ### [png2](https://i.loli.net/2017/09/22/59c50bf366cc1.png)
 ### [png3](https://i.loli.net/2017/09/22/59c50c45a2c83.png)
+## [Exercise_02: Exercise1.1](https://www.zybuluo.com/youngwang/note/902771)
