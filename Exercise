@@ -1,0 +1,32 @@
+from math import sin,log
+import matplotlib.pyplot as plt
+q1=0.5
+q2=0.5
+W_D=2/3
+dt=0.04
+theta_1=0.2
+theta_2=0.201
+deltatheta=log(0.001)/log(10)
+w_1=0
+w_2=0
+t=0
+F_D=0.5
+time_position=[]
+deltatheta_position=[]
+while t<=60:
+    time_position.append(t)
+    deltatheta_position.append(deltatheta)
+    w_1=w_1-(sin(theta_1)+q1*w_1-F_D*sin(W_D*t))*dt
+    theta_1=theta_1+w_1*dt
+    w_2=w_2-(sin(theta_2)+q2*w_2-F_D*sin(W_D*t))*dt
+    theta_2=theta_2+w_2*dt
+    deltatheta=log(abs(theta_1-theta_2))/log(10)
+    t=t+dt
+plt.title("deltatheta versus time")
+plt.xlabel("time(s)")
+plt.ylabel("deltatheta(radians)")
+plt.ylim(-12.0,3.0)
+plt.xlim(0.0,60.0)
+plt.plot(time_position,deltatheta_position,"k-")
+plt.legend()
+plt.show()
