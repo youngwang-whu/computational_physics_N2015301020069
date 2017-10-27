@@ -1,0 +1,314 @@
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+import matplotlib.pyplot as plt
+figure = plt.figure()
+ax = figure.add_subplot(111, projection='3d')
+from math import cos,sin,exp,sqrt,pi
+g = 9.8                   
+velocity = 29.0576        
+angle_velocity = 0.2*2*pi 
+dt = 0.01                 
+trajectory = []           
+def B2_M(velocity):
+    vd = 35.0
+    delta = 5.0
+    coefficient = 0.0039 + 0.0058/(1+exp((velocity-vd)/delta))
+    return coefficient    
+def a_lateral(theta):
+    return 0.5*(sin(4*theta)-0.25*sin(8*theta)+
+           0.08*sin(12*theta)-0.025*sin(16*theta))
+angle = 10               
+angle *= (pi/180)        
+for orientation in range(0,360,10):    
+    orientation *= (pi/180)   
+    alpha = orientation        
+    x = 0
+    y = 1.8
+    z = 0
+    displacement_x = []
+    displacement_y = []
+    displacement_z = []
+    vx = velocity * cos(angle)
+    vy = velocity * sin(angle)
+    vz = 0
+    while y >= 0:
+        displacement_x.append(x)
+        displacement_y.append(y)
+        displacement_z.append(z)
+        alpha += angle_velocity * dt
+        x += vx * dt
+        y += vy * dt
+        z += vz * dt
+        v_net = sqrt(vx**2+vy**2+vz**2)
+        vx = vx - B2_M(v_net)*v_net*vx*dt
+        vy -= g * dt
+        vz += a_lateral(alpha)*g*dt  
+    trajectory.append([displacement_x,displacement_y,displacement_z])
+for i in range(len(trajectory)):
+    ax.plot(trajectory[i][0],trajectory[i][1],trajectory[i][2],"k-")
+ax.view_init(elev=10,azim=11)
+ax.set_xlabel("x (m)")
+ax.set_ylabel("y (m)")
+ax.set_zlabel("z (m)")
+plt.show()        
+
+
+
+
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+import matplotlib.pyplot as plt
+figure = plt.figure()
+ax = figure.add_subplot(111, projection='3d')
+from math import cos,sin,exp,sqrt,pi
+g = 9.8                   
+orientation = pi/18      
+angle_velocity = 0.2*2*pi 
+dt = 0.01                 
+trajectory = []           
+def B2_M(velocity):
+    vd = 35.0
+    delta = 5.0
+    coefficient = 0.0039 + 0.0058/(1+exp((velocity-vd)/delta))
+    return coefficient    
+def a_lateral(theta):
+    return 0.5*(sin(4*theta)-0.25*sin(8*theta)+
+           0.08*sin(12*theta)-0.025*sin(16*theta))
+angle = 10               
+angle *= (pi/180)        
+for velocity in range(20,40):    
+    alpha = orientation           
+    x = 0
+    y = 1.8
+    z = 0
+    displacement_x = []
+    displacement_y = []
+    displacement_z = []
+    vx = velocity * cos(angle)
+    vy = velocity * sin(angle)
+    vz = 0
+    while y >= 0:
+        displacement_x.append(x)
+        displacement_y.append(y)
+        displacement_z.append(z)
+        alpha += angle_velocity * dt
+        x += vx * dt
+        y += vy * dt
+        z += vz * dt
+        v_net = sqrt(vx**2+vy**2+vz**2)
+        vx = vx - B2_M(v_net)*v_net*vx*dt
+        vy -= g * dt
+        vz += a_lateral(alpha)*g*dt  
+    trajectory.append([displacement_x,displacement_y,displacement_z])
+for i in range(len(trajectory)):
+    ax.plot(trajectory[i][0],trajectory[i][1],trajectory[i][2],"r-")
+ax.view_init(elev=10,azim=11)
+ax.set_xlabel("x (m)")
+ax.set_ylabel("y (m)")
+ax.set_zlabel("z (m)")
+plt.show()        
+
+
+
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+import matplotlib.pyplot as plt
+figure = plt.figure()
+ax = figure.add_subplot(111, projection='3d')
+from math import cos,sin,exp,sqrt,pi
+
+g = 9.8                   
+orientation = pi/18      
+velocity = 29.0576   
+dt = 0.01                 
+trajectory = []           
+def B2_M(velocity):
+    vd = 35.0
+    delta = 5.0
+    coefficient = 0.0039 + 0.0058/(1+exp((velocity-vd)/delta))
+    return coefficient    
+def a_lateral(theta):
+    return 0.5*(sin(4*theta)-0.25*sin(8*theta)+
+           0.08*sin(12*theta)-0.025*sin(16*theta))
+angle = 10               
+angle *= (pi/180) 
+for angle_velocity in range(1,10):    
+    angle_velocity = angle_velocity*0.2*pi           
+    alpha = orientation           
+    x = 0
+    y = 1.8
+    z = 0
+    displacement_x = []
+    displacement_y = []
+    displacement_z = []
+    vx = velocity * cos(angle)
+    vy = velocity * sin(angle)
+    vz = 0
+    while y >= 0:
+        displacement_x.append(x)
+        displacement_y.append(y)
+        displacement_z.append(z)
+        alpha += angle_velocity * dt
+        x += vx * dt
+        y += vy * dt
+        z += vz * dt
+        v_net = sqrt(vx**2+vy**2+vz**2)
+        vx = vx - B2_M(v_net)*v_net*vx*dt
+        vy -= g * dt
+        vz += a_lateral(alpha)*g*dt  
+    trajectory.append([displacement_x,displacement_y,displacement_z])
+for i in range(len(trajectory)):
+    ax.plot(trajectory[i][0],trajectory[i][1],trajectory[i][2],"b-")
+ax.view_init(elev=10,azim=11)
+ax.set_xlabel("x (m)")
+ax.set_ylabel("y (m)")
+ax.set_zlabel("z (m)")
+plt.show()        
+
+
+from math import cos,sin,exp,sqrt,pi
+import matplotlib.pyplot as plt
+g = 9.8                   
+velocity = 29.0576        
+angle_velocity = 0.2*2*pi 
+dt = 0.01                 
+trajectory = []           
+def B2_M(velocity):
+    vd = 35.0
+    delta = 5.0
+    coefficient = 0.0039 + 0.0058/(1+exp((velocity-vd)/delta))
+    return coefficient    
+def a_lateral(theta):
+    return 0.5*(sin(4*theta)-0.25*sin(8*theta)+
+           0.08*sin(12*theta)-0.025*sin(16*theta))
+angle = 10               
+angle *= (pi/180)        
+for orientation in range(0,360,10):    
+    orientation *= (pi/180)   
+    alpha = orientation        
+    x = 0
+    y = 1.8
+    z = 0
+    displacement_x = []
+    displacement_y = []
+    displacement_z = []
+    vx = velocity * cos(angle)
+    vy = velocity * sin(angle)
+    vz = 0
+    while y >= 0:
+        displacement_x.append(x)
+        displacement_y.append(y)
+        displacement_z.append(z)
+        alpha += angle_velocity * dt
+        x += vx * dt
+        y += vy * dt
+        z += vz * dt
+        v_net = sqrt(vx**2+vy**2+vz**2)
+        vx = vx - B2_M(v_net)*v_net*vx*dt
+        vy -= g * dt
+        vz += a_lateral(alpha)*g*dt  
+    trajectory.append([displacement_x,displacement_z])
+for i in range(len(trajectory)):
+    plt.plot(trajectory[i][0],trajectory[i][1],"k-")
+plt.xlabel("x (m)")
+plt.ylabel("z (m)")
+plt.show()        
+
+
+
+from math import cos,sin,exp,sqrt,pi
+import matplotlib.pyplot as plt
+g = 9.8                   
+orientation = pi/18        
+angle_velocity = 0.2*2*pi 
+dt = 0.01                 
+trajectory = []           
+def B2_M(velocity):
+    vd = 35.0
+    delta = 5.0
+    coefficient = 0.0039 + 0.0058/(1+exp((velocity-vd)/delta))
+    return coefficient    
+def a_lateral(theta):
+    return 0.5*(sin(4*theta)-0.25*sin(8*theta)+
+           0.08*sin(12*theta)-0.025*sin(16*theta))
+angle = 10               
+angle *= (pi/180)        
+for velocity in range(20,40):
+    alpha = orientation        
+    x = 0.0
+    y = 1.8
+    z = 0.0
+    displacement_x = []
+    displacement_y = []
+    displacement_z = []
+    vx = velocity * cos(angle)
+    vy = velocity * sin(angle)
+    vz = 0.0
+    while y >= 0:
+        displacement_x.append(x)
+        displacement_y.append(y)
+        displacement_z.append(z)
+        alpha += angle_velocity * dt
+        x += vx * dt
+        y += vy * dt
+        z += vz * dt
+        v_net = sqrt(vx**2+vy**2+vz**2)
+        vx = vx - B2_M(v_net)*v_net*vx*dt
+        vy -= g * dt
+        vz += a_lateral(alpha)*g*dt  
+    trajectory.append([displacement_x,displacement_z])
+for i in range(len(trajectory)):
+    plt.plot(trajectory[i][0],trajectory[i][1],"r-")
+plt.xlabel("x (m)")
+plt.ylabel("z (m)")
+plt.show()        
+
+
+
+from math import cos,sin,exp,sqrt,pi
+import matplotlib.pyplot as plt
+g = 9.8                   
+velocity = 29.0576        
+orientation = pi/18
+dt = 0.01                 
+trajectory = []           
+def B2_M(velocity):
+    vd = 35.0
+    delta = 5.0
+    coefficient = 0.0039 + 0.0058/(1+exp((velocity-vd)/delta))
+    return coefficient    
+def a_lateral(theta):
+    return 0.5*(sin(4*theta)-0.25*sin(8*theta)+
+           0.08*sin(12*theta)-0.025*sin(16*theta))
+angle = 10               
+angle *= (pi/180)        
+for angle_velocity in range(1,10):    
+    angle_velocity = angle_velocity*0.2*pi   
+    alpha = orientation        
+    x = 0
+    y = 1.8
+    z = 0
+    displacement_x = []
+    displacement_y = []
+    displacement_z = []
+    vx = velocity * cos(angle)
+    vy = velocity * sin(angle)
+    vz = 0
+    while y >= 0:
+        displacement_x.append(x)
+        displacement_y.append(y)
+        displacement_z.append(z)
+        alpha += angle_velocity * dt
+        x += vx * dt
+        y += vy * dt
+        z += vz * dt
+        v_net = sqrt(vx**2+vy**2+vz**2)
+        vx = vx - B2_M(v_net)*v_net*vx*dt
+        vy -= g * dt
+        vz += a_lateral(alpha)*g*dt  
+    trajectory.append([displacement_x,displacement_z])
+for i in range(len(trajectory)):
+    plt.plot(trajectory[i][0],trajectory[i][1],"b-")
+plt.xlabel("x (m)")
+plt.ylabel("z (m)")
+plt.show()        
