@@ -1,0 +1,59 @@
+import pygame
+import sys
+from pygame.locals import *
+ 
+#初始化Pygame
+pygame.init()
+  
+size = width,hight = 1600,900
+speed = [-2,1]
+bg = (250,250,250) #RGB颜色
+   
+clock = pygame.time.Clock()
+#创建指定大写的窗口
+screen = pygame.display.set_mode(size)
+#设置窗口标题
+pygame.display.set_caption('宇宙大元帅说要给我期中满分')
+ 
+#加载图片
+turtle = pygame.image.load('jsp.jpg')
+#获得图像的位置矩形
+position = turtle.get_rect()
+l_head = turtle
+r_head = pygame.transform.flip(turtle,True,False)
+     
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            sys.exit()
+        if event.type == KEYDOWN:
+            if event.key == K_LEFT:
+                turtle = l_head
+                speed = [-3,0]
+            if event.key == K_RIGHT:
+                turtle = r_head
+                speed = [3,0]
+            if event.key == K_UP:
+                speed = [0,-3]
+            if event.key == K_DOWN:
+                speed = [0,3]
+    #移动图像
+    position = position.move(speed)
+          
+    if position.left < 0 or position.right > width:
+                           
+        #翻转图像
+        turtle = pygame.transform.flip(turtle,True,False)
+        #反向移动
+        speed[0] = -speed[0]
+                                                   
+    if position.top < 0 or position.bottom > hight:
+        speed[1] = -speed[1]
+     
+    #填充背景
+    screen.fill(bg)
+    #更新图像
+    screen.blit(turtle,position)#bilt方法将一个图像覆盖到另一个图象上
+    #更新界面
+    pygame.display.flip()
+    clock.tick(200)
