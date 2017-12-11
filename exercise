@@ -1,0 +1,89 @@
+import numpy as np
+import matplotlib.pyplot as pl
+from mpl_toolkits.mplot3d import Axes3D
+
+
+
+v0 = np.zeros([21,21])
+for i in range(0,7):
+    for j in range(0,7):
+        v0[i][j] = 1.00
+
+
+
+vn = v0.copy()
+delta_v=0
+
+
+for i in np.arange(1,7):
+    for j in np.arange(7,20):
+        vn[i][j] = (v0[i-1][j]+v0[i+1][j]+v0[i][j-1]+v0[i][j+1])/4 
+        delta_v=delta_v + abs(v0[i][j]-vn[i][j])
+
+for i in np.arange(7,20):
+    for j in np.arange(1,20):
+        vn[i][j] = (v0[i-1][j]+v0[i+1][j]+v0[i][j-1]+v0[i][j+1])/4
+        delta_v=delta_v + abs(v0[i][j]-vn[i][j])
+
+for j in np.arange(7,20):
+    vn[0][j] = (v0[1][j]*2 + v0[0][j+1] + v0[0][j-1])/4
+    delta_v=delta_v + abs(v0[0][j]-vn[0][j])
+
+for i in np.arange(7,20):
+    vn[i][0] = (v0[i][1]*2 + v0[i+1][0] + v0[i-1][0])/4
+    delta_v=delta_v + abs(v0[i][0]-vn[i][0])
+
+v0=vn.copy()
+
+
+while delta_v>0.000005:
+    delta_v=0
+    for i in np.arange(1,7):
+        for j in np.arange(7,20):
+            vn[i][j] = (v0[i-1][j]+v0[i+1][j]+v0[i][j-1]+v0[i][j+1])/4
+            delta_v=delta_v + abs(v0[i][j]-vn[i][j])
+     
+    for i in np.arange(7,20):
+        for j in np.arange(1,20):
+            vn[i][j] = (v0[i-1][j]+v0[i+1][j]+v0[i][j-1]+v0[i][j+1])/4
+            delta_v=delta_v + abs(v0[i][j]-vn[i][j])
+    
+    for j in np.arange(7,20):
+        vn[0][j] = (v0[1][j]*2 + v0[0][j+1] + v0[0][j-1])/4
+        delta_v=delta_v + abs(v0[0][j]-vn[0][j])
+
+    for i in np.arange(7,20):
+        vn[i][0] = (v0[i][1]*2 + v0[i+1][0] + v0[i-1][0])/4
+        delta_v=delta_v + abs(v0[i][0]-vn[i][0])
+        
+    v0=vn.copy()
+
+
+
+v1 = np.zeros([41,41])
+for i in np.arange(0,20):
+    for j in np.arange(0,20):
+        v1[i+20][j+20] = v0[i][j]
+        v1[20-i][20+j] = v0[i][j]
+        v1[20+i][20-j] = v0[i][j]
+        v1[20-i][20-j] = v0[i][j]
+
+
+
+fig = pl.figure()
+ax = Axes3D(fig)
+
+def v(x,y):
+    return v1[x,y]
+
+x = np.arange(0,40) 
+y = np.arange(0,40) 
+X,Y = np.meshgrid(x,y)
+
+ax.plot_surface(X, Y, v(X,Y), rstride = 1, cstride = 1, cmap = pl.cm.hot)
+F = pl.contourf(X, Y, v(X,Y))
+pl.clabel( F, inline=1, fontsize=10)
+pl.xticks([]), pl.yticks([])
+
+pl.show()
+
