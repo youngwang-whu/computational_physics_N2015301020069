@@ -10,4 +10,7 @@
 ## [期中作业2](https://www.zybuluo.com/youngwang/note/947369)
 ## [Exercise_08: Problem4.11](https://www.zybuluo.com/youngwang/note/970843)
 ## [Exercise 10: Problem5.2](https://www.zybuluo.com/youngwang/note/979707)
-## [期末作业] （见文件中pdf版）
+## [期末作业] （https://github.com/youngwang-whu/computational_physics_N2015301020069/blob/master/TensorFlow%E5%85%A5%E9%97%A8/%E8%AE%A1%E7%AE%97%E7%89%A9%E7%90%86%E6%9C%9F%E6%9C%AB%E6%8A%A5%E5%91%8A.pdf）
+
+
+# [基于keras的CNN手写图像识别] 
