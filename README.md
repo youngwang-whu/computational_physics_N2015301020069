@@ -1,6 +1,6 @@
 # Homework list
 
-Textbook: 
+Textbook: <br/>
 ***Computational Physics (2nd Edition)***  
 by **Nicholas J.Giordano & Hisao Nakanishi**, Department of Physics, Purdue University
 
