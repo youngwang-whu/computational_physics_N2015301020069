@@ -1,6 +1,9 @@
 # Homework list
 
-Textbook: ***Computational Physics, 2nd Edition***  by**Nicholas J.Giordano & Hisao Nakanishi**, Department of Physics, Purdue University
+Textbook: 
+***Computational Physics, 2nd Edition***  
+by **Nicholas J.Giordano & Hisao Nakanishi**, Department of Physics, Purdue University
+
 ## [Exercise_01: Display your name](https://www.zybuluo.com/youngwang/note/885175)
 ## [Exercise_02: Move my name](https://www.zybuluo.com/youngwang/note/894738)
 ## [Exercise_03: Problem1.1](https://www.zybuluo.com/youngwang/note/902771)
