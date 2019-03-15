@@ -1,5 +1,7 @@
 # Homework list
 
+Course work of Computational physics, at the Fall Term 2017, instructed by Prof. Hao Cai in Wuhan University. 
+
 Textbook: <br/>
 ***Computational Physics (2nd Edition)***  
 by **Nicholas J.Giordano & Hisao Nakanishi**, Department of Physics, Purdue University
